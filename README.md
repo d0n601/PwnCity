@@ -34,6 +34,17 @@ We could tunnel from our initial foothold. Knowing that RDP is open on two build
 5. Work on method to establish persistence...my repo sux
 
 
+
+# Defenses
+
+### Endpoint Security
+
+![blocked0](https://user-images.githubusercontent.com/8961705/155248314-9d28ef64-1a5f-4abf-aceb-448158efa4ea.png)
+![blocked](https://user-images.githubusercontent.com/8961705/155248281-6b07edea-04cb-42d8-934c-7c26f0f4259f.png)
+
+
+
+
 # References
 1. [TeamCity Hardening Guide](https://blog.jetbrains.com/teamcity/2021/02/hardening-your-teamcity-server/)
 2. [TeamCity SuperUser](https://www.jetbrains.com/help/teamcity/super-user.html)
