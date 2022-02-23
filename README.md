@@ -32,6 +32,7 @@ We could tunnel from our initial foothold. Knowing that RDP is open on two build
   * SSH keys to source code repositories. 
   * Passwords stored in Google Chrome.
 5. Work on method to establish persistence...my repo sux
+6. Build into Terraform/Ansible.
 
 
 
@@ -43,6 +44,10 @@ PwnAgent01 has Microsoft Defender enabled. Although it's certainly still possibl
 
 ![blocked](https://user-images.githubusercontent.com/8961705/155248281-6b07edea-04cb-42d8-934c-7c26f0f4259f.png)
 
+
+
+# Extra Credit
+* Defeat Microsoft Defender and get an Empire agent to launch on `PwnAgent01` via TeamCity.
 
 
 
