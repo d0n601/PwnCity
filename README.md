@@ -42,6 +42,7 @@ We could tunnel from our initial foothold. Knowing that RDP is open on two build
 1. Explore the TeamCity server a bit and check out the upser user token `cat /home/dev/TeamCity/TeamCity/logs/teamcity-server.log | grep "Super user"`.  
 ![sutoken](https://user-images.githubusercontent.com/8961705/155600482-0fbff1f2-18a2-4d90-a4c4-1d7027d616e6.png)
 2. Now login as the Super!
+![superlogin](https://user-images.githubusercontent.com/8961705/155605281-3775750d-9d5b-4a46-8267-49a766cf2626.png)
 3. Create new Project *PwnAgent* via `Administration > Projects > Create project`, and get a shell on the build agents.
 ![createproject](https://user-images.githubusercontent.com/8961705/155601956-8804c90b-24c8-43da-8a72-ee5354d6fe49.png)
 ![buildsteps](https://user-images.githubusercontent.com/8961705/155602113-3e81cf04-3ef0-402b-8d7c-c6a7b4024a96.png)
