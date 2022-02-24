@@ -69,6 +69,7 @@ PwnAgent01 has Microsoft Defender enabled. Although it's certainly still possibl
 # Extra Credit
 * Defeat Microsoft Defender and get an Empire agent to launch on `PwnAgent01` via TeamCity.
 * Enable Defender on Bruno-PC, and dump creds. 
+* Determine the other ways in/around the network that aren't directly outlined above.
 
 
 # Administrative Notes  
