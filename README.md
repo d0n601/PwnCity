@@ -1,7 +1,22 @@
 # PwnCity
+An insecurely configured TeamCity continuous integration environment. 
 
-## Red Team Infrastructure
-Describe a bit about the servers we've got. 
+### Attack Infrastructure
+* Kali Linux:      VM on operator machine.
+* Ubuntu 20.04LTS: Empire Server
+
+### PwnCity Lab
+* Ubuntu 20.04  TeamCity
+* Windows 10:   BuildAgent01
+* Windows 7:    BuildAgent02
+* Windows 10:   Bruno-PC
+
+#### Creds
+Credentials chosen from `rockyou.txt`.  
+* bruno:AMOTEbruno84  (Windows)
+* dev:Roblerino1995 (Windows/Linux)
+* admin:aut0magic (TeamCity)
+
 
 ## Demo
 There may be more than one path through PwnCity, but this is the one I'll be presenting on Feb 24th at the [OWASP Sacramento Chapter](https://owasp.org/www-chapter-sacramento/) meeting.
@@ -25,9 +40,7 @@ We could tunnel from our initial foothold. Knowing that RDP is open on two build
 
 
 ### ToDo
-1. Create user `bruno` on BuildAgents, with creds found on `rockyou.txt`.
-2. Login as `bruno` on BuildAgents so that creds are stored plaintext.
-3. Spin up new Windows 10 VM as `bruno-PC` and use same creds as above.
+
 4. Put secrets on Bruno's PC.
   * SSH keys to source code repositories. 
   * Passwords stored in Google Chrome.
@@ -54,3 +67,35 @@ PwnAgent01 has Microsoft Defender enabled. Although it's certainly still possibl
 # References
 1. [TeamCity Hardening Guide](https://blog.jetbrains.com/teamcity/2021/02/hardening-your-teamcity-server/)
 2. [TeamCity SuperUser](https://www.jetbrains.com/help/teamcity/super-user.html)
+
+
+
+# PwnCity  
+ 
+
+
+
+
+
+
+
+
+### Ubuntu
+public ip: 13.64.114.106 (dynamic)
+x and my private key for now
+TeamCity: Admin credentials 
+
+
+#### Bad Stuff (reorder these so it makes more sense)
+* SSH enabled on port 22 for everyone to try.
+* TeamCity allows registration...random people can create accounts!
+* TeamCity is installed as root user!
+* TeamCity Agents running as SYSTEM...do they really need to?
+* TeamCity is exposed to the internet on port 8111...why when the dev can access it locally via http:10.0.0.4:8111
+* Todo: create an easy to guess user/password combo to crack the hash to demonstrate badness of root/shadow
+
+
+
+## References
+1. http://52.234.0.18:8111/update/agentInstaller.exe
+2. aut0magicaut0magic
