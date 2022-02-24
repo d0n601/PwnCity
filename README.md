@@ -4,24 +4,6 @@ An insecurely configured TeamCity continuous integration environment.
  ![rafal-urbanski-shot-08](https://user-images.githubusercontent.com/8961705/155617389-0a2de4e6-142f-45d7-808c-dccdcde6c992.jpg)
 
 
-
-### Attack Infrastructure
-* Kali Linux:      VM on operator machine.
-* Ubuntu 20.04LTS: Empire Server
-
-### PwnCity Lab
-* Ubuntu 20.04  TeamCity
-* Windows 10:   BuildAgent01
-* Windows 7:    BuildAgent02
-* Windows 10:   Bruno-PC 
-
-#### Creds
-Credentials chosen from `rockyou.txt`.  
-* bruno:AMOTEbruno84  (Windows)
-* dev:Roblerino1995 (Windows/Linux)
-* admin:aut0magic (TeamCity)
-
-
 ## Demo
 There may be more than one path through PwnCity, but this is the one I'll be presenting on Feb 24th at the [OWASP Sacramento Chapter](https://owasp.org/www-chapter-sacramento/) meeting.   
 **Note:** Operational security is largely ignored here since this is a demo. 
@@ -65,6 +47,24 @@ We could tunnel from our initial foothold. Knowing that RDP is open on two build
 9. Loot Bruno's PC, steal his Chrome credentials.
 
 
+### Attack Infrastructure
+* Kali Linux:      VM on operator machine.
+* Ubuntu 20.04LTS: Empire Server
+
+### PwnCity Lab
+* Ubuntu 20.04  TeamCity
+* Windows 10:   BuildAgent01
+* Windows 7:    BuildAgent02
+* Windows 10:   Bruno-PC 
+
+#### Creds
+Credentials chosen from `rockyou.txt`.  
+* bruno:AMOTEbruno84  (Windows)
+* dev:Roblerino1995 (Windows/Linux)
+* admin:aut0magic (TeamCity)
+
+
+
 ### To Do
 1. Deploy with Terraform.
 2. Install things with Ansible.
@@ -72,7 +72,7 @@ We could tunnel from our initial foothold. Knowing that RDP is open on two build
 4. TBD
 
 
-# Defenses
+## Defenses
 
 ### Endpoint Security
 PwnAgent01 has Microsoft Defender enabled. Although it's certainly still possible to defeat this, the malicious build step we demonstrated will be blocked.  
@@ -81,13 +81,6 @@ PwnAgent01 has Microsoft Defender enabled. Although it's certainly still possibl
 ![blocked](https://user-images.githubusercontent.com/8961705/155248281-6b07edea-04cb-42d8-934c-7c26f0f4259f.png)  
 
 ![bruno_edr](https://user-images.githubusercontent.com/8961705/155440006-10a0cc2d-fd86-4239-a2c2-0c6f7ed96c26.png)
-
-
-
-# Extra Credit
-* Defeat Microsoft Defender and get an Empire agent to launch on `PwnAgent01` via TeamCity.
-* Enable Defender on Bruno-PC, and dump creds. 
-* Determine the other ways in/around the network that aren't directly outlined above.
 
 
 # Administrative Notes  
