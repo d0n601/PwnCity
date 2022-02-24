@@ -9,7 +9,7 @@ An insecurely configured TeamCity continuous integration environment.
 * Ubuntu 20.04  TeamCity
 * Windows 10:   BuildAgent01
 * Windows 7:    BuildAgent02
-* Windows 10:   Bruno-PC
+* Windows 10:   Bruno-PC 
 
 #### Creds
 Credentials chosen from `rockyou.txt`.  
@@ -22,12 +22,14 @@ Credentials chosen from `rockyou.txt`.
 There may be more than one path through PwnCity, but this is the one I'll be presenting on Feb 24th at the [OWASP Sacramento Chapter](https://owasp.org/www-chapter-sacramento/) meeting.
 
 ### Initial Access
-1. Scan the IP to discover SSH and TeamCity `nmap -p- blabla`.
-2. Browse to the TeamCity URL [http://52.234.0.18:8111](http://52.234.0.18:8111).
-3. Create a new user `bob`.
-4. As `bob` navigate to `Projects > SimpleMavenSample > Build > Settings` 
+1. Scan the IP to discover SSH and TeamCity `nmap -Pn -p- 52.234.0.18`.
+  * Note: It won't respond to ICMP, so `nmap 52.234.0.18` makes it seem dead.
+  * Note: If you only scan the top 1000 TCP ports, you miss TeamCity `nmap -Pn 52.234.0.18`.
+3. Browse to the TeamCity URL [http://52.234.0.18:8111](http://52.234.0.18:8111).
+4. Create a new user `bob`.
+5. As `bob` navigate to `Projects > SimpleMavenSample > Build > Settings` 
   * See that `Parameters` contains credentials. 
-5. See if credentials are reused for `ssh dev@168.62.29.0`, and ssh in as low privileged user. 
+6. See if credentials are reused for `ssh dev@168.62.29.0`, and ssh in as low privileged user. 
 
 ### From the Foothold
 We could tunnel from our initial foothold. Knowing that RDP is open on two build agents would allow us to attempt to authenticate via the creds we've found...but that's not as fun.
@@ -35,17 +37,15 @@ We could tunnel from our initial foothold. Knowing that RDP is open on two build
 2. Now login as the Super!
 3. Create new BProject *PwnAgent*, and get a shell on the build agents.
 4. Run Mimikatz to dump login creds and get `bruno`'s password.
-5. Setup a tunnel and RDP into `bruno`...
-6. Loot Machine.
+5. Run `powershell/lateral_movement/invoke_smbexec` to get beacon on Bruno-PC via NTML hash.
+6. Loot Bruno's PC, steal his Chrome credentials.
 
 
 ### ToDo
-
-4. Put secrets on Bruno's PC.
-  * SSH keys to source code repositories. 
-  * Passwords stored in Google Chrome.
-5. Work on method to establish persistence...my repo sux
-6. Build into Terraform/Ansible.
+1. Deploy with Terraform.
+2. Install things with Ansible.
+4. Work on method to establish persistence...my repo sux
+5. Build into Terraform/Ansible.
 
 
 
@@ -69,33 +69,3 @@ PwnAgent01 has Microsoft Defender enabled. Although it's certainly still possibl
 2. [TeamCity SuperUser](https://www.jetbrains.com/help/teamcity/super-user.html)
 
 
-
-# PwnCity  
- 
-
-
-
-
-
-
-
-
-### Ubuntu
-public ip: 13.64.114.106 (dynamic)
-x and my private key for now
-TeamCity: Admin credentials 
-
-
-#### Bad Stuff (reorder these so it makes more sense)
-* SSH enabled on port 22 for everyone to try.
-* TeamCity allows registration...random people can create accounts!
-* TeamCity is installed as root user!
-* TeamCity Agents running as SYSTEM...do they really need to?
-* TeamCity is exposed to the internet on port 8111...why when the dev can access it locally via http:10.0.0.4:8111
-* Todo: create an easy to guess user/password combo to crack the hash to demonstrate badness of root/shadow
-
-
-
-## References
-1. http://52.234.0.18:8111/update/agentInstaller.exe
-2. aut0magicaut0magic
