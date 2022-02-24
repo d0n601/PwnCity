@@ -65,11 +65,11 @@ We could tunnel from our initial foothold. Knowing that RDP is open on two build
 9. Loot Bruno's PC, steal his Chrome credentials.
 
 
-### ToDo
+### To Do
 1. Deploy with Terraform.
 2. Install things with Ansible.
-3. More things maybe.
-
+3. CLI variable to tune up or down defenses (kind of like a diffuculty level)
+4. TBD
 
 
 # Defenses
