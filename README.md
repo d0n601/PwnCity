@@ -55,13 +55,15 @@ We could tunnel from our initial foothold. Knowing that RDP is open on two build
 PwnAgent01 has Microsoft Defender enabled. Although it's certainly still possible to defeat this, the malicious build step we demonstrated will be blocked.  
 ![blocked0](https://user-images.githubusercontent.com/8961705/155248314-9d28ef64-1a5f-4abf-aceb-448158efa4ea.png)  
 
-![blocked](https://user-images.githubusercontent.com/8961705/155248281-6b07edea-04cb-42d8-934c-7c26f0f4259f.png)
+![blocked](https://user-images.githubusercontent.com/8961705/155248281-6b07edea-04cb-42d8-934c-7c26f0f4259f.png)  
+
+![bruno_edr](https://user-images.githubusercontent.com/8961705/155440006-10a0cc2d-fd86-4239-a2c2-0c6f7ed96c26.png)
 
 
 
 # Extra Credit
 * Defeat Microsoft Defender and get an Empire agent to launch on `PwnAgent01` via TeamCity.
-
+* Enable Defender on Bruno-PC, and dump creds. 
 
 
 # References
