@@ -38,12 +38,21 @@ There may be more than one path through PwnCity, but this is the one I'll be pre
 
 ### From the Foothold
 We could tunnel from our initial foothold. Knowing that RDP is open on two build agents would allow us to attempt to authenticate via the creds we've found...but that's not as fun.
-1. Explore the TeamCity server a bit and check out the upser user token `cat /home/dev/TeamCity/Teamcity/logs/teamcity-server.log | grep "Super user"
+1. Explore the TeamCity server a bit and check out the upser user token `cat /home/dev/TeamCity/TeamCity/logs/teamcity-server.log | grep "Super user"`.
+![sutoken](https://user-images.githubusercontent.com/8961705/155600482-0fbff1f2-18a2-4d90-a4c4-1d7027d616e6.png)
 2. Now login as the Super!
-3. Create new BProject *PwnAgent*, and get a shell on the build agents.
-4. Run Mimikatz to dump login creds and get `bruno`'s password.
-5. Run `powershell/lateral_movement/invoke_smbexec` to get beacon on Bruno-PC via NTML hash.
-6. Loot Bruno's PC, steal his Chrome credentials.
+3. Create new Project *PwnAgent* via `Administration > Projects > Create project`, and get a shell on the build agents.
+![createproject](https://user-images.githubusercontent.com/8961705/155601956-8804c90b-24c8-43da-8a72-ee5354d6fe49.png)
+![buildsteps](https://user-images.githubusercontent.com/8961705/155602113-3e81cf04-3ef0-402b-8d7c-c6a7b4024a96.png)
+4. Edit the build step so that it executes *Always, even if build stop command was issues*, and modify the following:
+    * **Command executable:** `cmd.exe`
+    * **Command parameters:** `/c %system.teamcity.build.checkoutDir%/launcher.bat`  
+    * Once you can see how these work, you understand how code execution works here, and can modify it to do what you like. 
+    ![build_step](https://user-images.githubusercontent.com/8961705/155602912-184f4977-254d-430e-b365-6f7bcaed0bd0.png)
+
+7. Run Mimikatz to dump login creds and get `bruno`'s password.
+8. Run `powershell/lateral_movement/invoke_smbexec` to get beacon on Bruno-PC via NTML hash.
+9. Loot Bruno's PC, steal his Chrome credentials.
 
 
 ### ToDo
