@@ -28,12 +28,13 @@ There may be more than one path through PwnCity, but this is the one I'll be pre
    ![portscan](https://user-images.githubusercontent.com/8961705/155561063-0a8a142d-4675-4b3e-a811-acc53b561339.png)  
 2. Browse to the TeamCity URL [http://52.234.0.18:8111](http://52.234.0.18:8111).
     ![teamcitylogin](https://user-images.githubusercontent.com/8961705/155561509-4260185a-2f67-48b2-a4d9-b66b0ea4c79f.png)
-4. Navigate to [http://52.234.0.18:8111/registerUser.html](http://52.234.0.18:8111/registerUser.html) create a new user `bob`, password `bobhacks?`.  
+3. Navigate to [http://52.234.0.18:8111/registerUser.html](http://52.234.0.18:8111/registerUser.html) create a new user `bob`, password `bobhacks?`.  
 ![bobregister](https://user-images.githubusercontent.com/8961705/155562055-8fadb90b-0718-4070-93c2-708465b92a4e.png)
-5. As `bob` navigate to `Projects > SimpleMavenSample > Build > Settings` 
+4. As `bob` navigate to `Projects > SimpleMavenSample > Build > Settings` 
   * See that `Parameters` contains credentials. 
   ![leakcreds](https://user-images.githubusercontent.com/8961705/155563479-e85fdc1a-5c4c-4bcf-b339-8a93fd093533.png)
-6. See if credentials are reused for `ssh dev@168.62.29.0`, and ssh in as low privileged user. 
+5. See if credentials are reused for `ssh dev@168.62.29.0`, and ssh in as low privileged user. 
+  ![sshin](https://user-images.githubusercontent.com/8961705/155565080-c4de89b3-d8ff-4428-a47e-f00b82a14c30.png)
 
 ### From the Foothold
 We could tunnel from our initial foothold. Knowing that RDP is open on two build agents would allow us to attempt to authenticate via the creds we've found...but that's not as fun.
