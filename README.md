@@ -52,9 +52,11 @@ We could tunnel from our initial foothold. Knowing that RDP is open on two build
     ![build_step](https://user-images.githubusercontent.com/8961705/155602912-184f4977-254d-430e-b365-6f7bcaed0bd0.png)
     * Alternatively, you can avoid using files in the repo, leaving it blank. All code can be shoved into a build step.   
     ![alternative](https://user-images.githubusercontent.com/8961705/155603599-017ce751-5f04-432d-a531-ceec6940eae7.png)
-
-7. Run Mimikatz to dump login creds and get `bruno`'s password.
-8. Run `powershell/lateral_movement/invoke_smbexec` to get beacon on Bruno-PC via NTML hash.
+5. Select the `...` next to `Run` on the menu, and then on the desired agent you're targeting. If all goes well you'll have an agent call back.  
+![run](https://user-images.githubusercontent.com/8961705/155604796-0fb0cecb-0970-4dc6-9e3a-b30f86556b77.png)
+![agentcallback](https://user-images.githubusercontent.com/8961705/155604811-80bef586-8f31-42dd-8b73-3464f0108822.png)
+6. Run Mimikatz to dump login creds and get `bruno`'s password.
+7. Run `powershell/lateral_movement/invoke_smbexec` to get beacon on Bruno-PC via NTML hash.
 9. Loot Bruno's PC, steal his Chrome credentials.
 
 
@@ -88,13 +90,14 @@ PwnAgent01 has Microsoft Defender enabled. Although it's certainly still possibl
 This section is just a collection of snippets that were useful when administering the lab environment.  
 
 #### RDP into Windows Hosts  
-1. From Kali, dynamic port forward on `TeamCity` host to access local resources `ssh -D 9050 x@52.234.0.18`.  
-2. RDP via Proxychains with `proxychains4 xfreerdp /u:dev /v:10.0.0.6:3389.
+1. From Kali, dynamic port forward on `TeamCity` host to access local resources `ssh -D 9050 dev@52.234.0.18`.  
+2. RDP via Proxychains with `proxychains4 xfreerdp /u:dev /v:10.0.0.6:3389`.
 
 
 
 # References
 1. [TeamCity Hardening Guide](https://blog.jetbrains.com/teamcity/2021/02/hardening-your-teamcity-server/)
 2. [TeamCity SuperUser](https://www.jetbrains.com/help/teamcity/super-user.html)
+3. [Pentest TeamCity](https://github.com/kacperszurek/pentest_teamcity)
 
 
