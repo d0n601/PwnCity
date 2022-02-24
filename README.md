@@ -27,10 +27,11 @@ There may be more than one path through PwnCity, but this is the one I'll be pre
    * Note: If you only scan the top 1000 TCP ports, you miss TeamCity `nmap -Pn 52.234.0.18`.
    ![portscan](https://user-images.githubusercontent.com/8961705/155561063-0a8a142d-4675-4b3e-a811-acc53b561339.png)  
 2. Browse to the TeamCity URL [http://52.234.0.18:8111](http://52.234.0.18:8111).
-3. Create a new user `bob`.
-4. As `bob` navigate to `Projects > SimpleMavenSample > Build > Settings` 
+    ![teamcitylogin](https://user-images.githubusercontent.com/8961705/155561509-4260185a-2f67-48b2-a4d9-b66b0ea4c79f.png)
+4. Create a new user `bob`.
+5. As `bob` navigate to `Projects > SimpleMavenSample > Build > Settings` 
   * See that `Parameters` contains credentials. 
-5. See if credentials are reused for `ssh dev@168.62.29.0`, and ssh in as low privileged user. 
+6. See if credentials are reused for `ssh dev@168.62.29.0`, and ssh in as low privileged user. 
 
 ### From the Foothold
 We could tunnel from our initial foothold. Knowing that RDP is open on two build agents would allow us to attempt to authenticate via the creds we've found...but that's not as fun.
