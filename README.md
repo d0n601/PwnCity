@@ -25,6 +25,7 @@ There may be more than one path through PwnCity, but this is the one I'll be pre
 1. Scan the IP to discover SSH and TeamCity `nmap -Pn -p- 52.234.0.18`.
    * Note: It won't respond to ICMP, so `nmap 52.234.0.18` makes it seem dead.
    * Note: If you only scan the top 1000 TCP ports, you miss TeamCity `nmap -Pn 52.234.0.18`.
+   ![portscan](https://user-images.githubusercontent.com/8961705/155561063-0a8a142d-4675-4b3e-a811-acc53b561339.png)  
 2. Browse to the TeamCity URL [http://52.234.0.18:8111](http://52.234.0.18:8111).
 3. Create a new user `bob`.
 4. As `bob` navigate to `Projects > SimpleMavenSample > Build > Settings` 
@@ -64,6 +65,15 @@ PwnAgent01 has Microsoft Defender enabled. Although it's certainly still possibl
 # Extra Credit
 * Defeat Microsoft Defender and get an Empire agent to launch on `PwnAgent01` via TeamCity.
 * Enable Defender on Bruno-PC, and dump creds. 
+
+
+# Administrative Notes  
+This section is just a collection of snippets that were useful when administering the lab environment.  
+
+#### RDP into Windows Hosts  
+1. From Kali, dynamic port forward on `TeamCity` host to access local resources `ssh -D 9050 x@52.234.0.18`.  
+2. RDP via Proxychains with `proxychains4 xfreerdp /u:dev /v:10.0.0.6:3389.
+
 
 
 # References
