@@ -19,7 +19,8 @@ Credentials chosen from `rockyou.txt`.
 
 
 ## Demo
-There may be more than one path through PwnCity, but this is the one I'll be presenting on Feb 24th at the [OWASP Sacramento Chapter](https://owasp.org/www-chapter-sacramento/) meeting.
+There may be more than one path through PwnCity, but this is the one I'll be presenting on Feb 24th at the [OWASP Sacramento Chapter](https://owasp.org/www-chapter-sacramento/) meeting.   
+**Note:** Operational security is largely ignored here since this is a demo. 
 
 ### Initial Access
 1. Scan the IP to discover SSH and TeamCity `nmap -Pn -p- 52.234.0.18`.
@@ -38,7 +39,7 @@ There may be more than one path through PwnCity, but this is the one I'll be pre
 
 ### From the Foothold
 We could tunnel from our initial foothold. Knowing that RDP is open on two build agents would allow us to attempt to authenticate via the creds we've found...but that's not as fun.
-1. Explore the TeamCity server a bit and check out the upser user token `cat /home/dev/TeamCity/TeamCity/logs/teamcity-server.log | grep "Super user"`.
+1. Explore the TeamCity server a bit and check out the upser user token `cat /home/dev/TeamCity/TeamCity/logs/teamcity-server.log | grep "Super user"`.  
 ![sutoken](https://user-images.githubusercontent.com/8961705/155600482-0fbff1f2-18a2-4d90-a4c4-1d7027d616e6.png)
 2. Now login as the Super!
 3. Create new Project *PwnAgent* via `Administration > Projects > Create project`, and get a shell on the build agents.
@@ -49,6 +50,8 @@ We could tunnel from our initial foothold. Knowing that RDP is open on two build
     * **Command parameters:** `/c %system.teamcity.build.checkoutDir%/launcher.bat`  
     * Once you can see how these work, you understand how code execution works here, and can modify it to do what you like. 
     ![build_step](https://user-images.githubusercontent.com/8961705/155602912-184f4977-254d-430e-b365-6f7bcaed0bd0.png)
+    * Alternatively, you can avoid using files in the repo, leaving it blank. All code can be shoved into a build step.   
+    ![alternative](https://user-images.githubusercontent.com/8961705/155603599-017ce751-5f04-432d-a531-ceec6940eae7.png)
 
 7. Run Mimikatz to dump login creds and get `bruno`'s password.
 8. Run `powershell/lateral_movement/invoke_smbexec` to get beacon on Bruno-PC via NTML hash.
