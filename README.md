@@ -42,8 +42,11 @@ We could tunnel from our initial foothold. Knowing that RDP is open on two build
 5. Select the `...` next to `Run` on the menu, and then on the desired agent you're targeting. If all goes well you'll have an agent call back.  
 ![run](https://user-images.githubusercontent.com/8961705/155604796-0fb0cecb-0970-4dc6-9e3a-b30f86556b77.png)
 ![agentcallback](https://user-images.githubusercontent.com/8961705/155604811-80bef586-8f31-42dd-8b73-3464f0108822.png)
-6. Run Mimikatz to dump login creds and get `bruno`'s password.
-7. Run `powershell/lateral_movement/invoke_smbexec` to get beacon on Bruno-PC via NTML hash.
+6. Run a port scan via `powershell/situational_awareness/network/portscan` module. Discover that `10.0.0.7` has `3389,445,139,135` all open.
+![portscan](https://user-images.githubusercontent.com/8961705/155631137-2ae9b6af-d1ca-44db-94d6-21bae7f140cf.png)
+7. Run Mimikatz to dump login creds and get `bruno`'s password.
+8. Run `powershell/lateral_movement/invoke_smbexec` to get beacon on `Bruno-PC` via NTML hash.
+![smbexec](https://user-images.githubusercontent.com/8961705/155631542-cf625c83-c2cb-44c1-bc08-ee3045a1fc72.png)
 9. Loot Bruno's PC, steal his Chrome credentials.
 
 
