@@ -99,5 +99,5 @@ This section is just a collection of snippets that were useful when administerin
 1. [TeamCity Hardening Guide](https://blog.jetbrains.com/teamcity/2021/02/hardening-your-teamcity-server/)
 2. [TeamCity SuperUser](https://www.jetbrains.com/help/teamcity/super-user.html)
 3. [Pentest TeamCity](https://github.com/kacperszurek/pentest_teamcity)
-
+4. [PwnCity Build Agent](https://github.com/d0n601/PwnCity-Agent)
 
